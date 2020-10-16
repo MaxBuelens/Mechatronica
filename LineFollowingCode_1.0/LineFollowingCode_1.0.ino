@@ -34,10 +34,10 @@ void setup() {
  // Digitale pinnen als output zetten
  pinMode(Drukknop, INPUT);
  pinMode(Enable, OUTPUT);
- pinMode(Motor1L, OUTPUT);
- pinMode(Motor1R, OUTPUT);
- pinMode(Motor2L, OUTPUT);
- pinMode(Motor2R, OUTPUT);
+ pinMode(Motor1CW, OUTPUT);
+ pinMode(Motor1CCW, OUTPUT);
+ pinMode(Motor2CW, OUTPUT);
+ pinMode(Motor2CCW, OUTPUT);
    
 
 }
