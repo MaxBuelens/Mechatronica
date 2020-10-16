@@ -10,10 +10,10 @@ const int Sensor5 = A5;
 
 //Digitale
 Const int Enable = 13;
-Const int Motor1L = 5;
-Const int Motor1R = 6; //Ik ben niet zeker meer welke pinnen het waren
-Const int Motor2L = 10;
-Const int Motor2R = 11;
+Const int Motor1CW = 5; // Draaizin motoren nog niet zeker
+Const int Motor1CCW = 10;
+Const int Motor2CW = 6;
+Const int Motor2CCW = 11;
 
 //Drukknop variabele
 int DrukknopValue = 0;
