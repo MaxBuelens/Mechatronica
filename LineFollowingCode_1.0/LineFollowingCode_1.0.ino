@@ -65,7 +65,7 @@ void loop() {
   } 
   
   // Doorloop het programma
-  If Active{
+  if Active{
     // Hier de werkelijke code
   }
 
