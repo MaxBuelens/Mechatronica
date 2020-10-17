@@ -1,4 +1,4 @@
-/*Line Following code */
+/*Line Following code 1.0 */
 
 //Analoge
 const int Drukknop = A0;
@@ -31,8 +31,10 @@ void setup() {
  // Voor de serial poort te kunnen gebruiken
  Serial.Begin(9600);
  
- // Digitale pinnen als output zetten
+ // Drukknop als input
  pinMode(Drukknop, INPUT);
+ 
+ // Digitale pinnen als output
  pinMode(Enable, OUTPUT);
  pinMode(Motor1CW, OUTPUT);
  pinMode(Motor1CCW, OUTPUT);
