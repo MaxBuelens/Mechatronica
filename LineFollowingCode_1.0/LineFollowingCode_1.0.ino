@@ -73,12 +73,40 @@ Void ReadSensorsAndButton(){
   Delay(5);
   Sensor5Value = analogRead(Sensor5);
   Delay(5);
-  
+ 
+ // Serial print 
+ Serial.print("Sensor1:" + Sensor1Value);
+ Serial.print("\t");
+ Serial.print("Sensor2:" + Sensor2Value);
+ Serial.print("\t");
+ Serial.print("Sensor3:" + Sensor3Value);
+ Serial.print("\t");
+ Serial.print("Sensor4:" + Sensor4Value);
+ Serial.print("\t");
+ Serial.println("Sensor5:" + Sensor5Value);
+ 
   // Drukknop gedrukt start programma
   if (DrukknopValue == HIGH){
-    Active =! Active;    
+    Active =! Active; 
+    Serial.println("Push on button ==> robot is active");
+    Delay(200);
   } // End if DrukknopValue
 } //End Void ReadSensorAndButton
+#######################################################################################################################################
+// Go forward
+Void Forward(){
+ 
+}//Void Forward
+#######################################################################################################################################
+//Go left
+Void TrunLeft(){
+ 
+}//Void TrunLeft
+#######################################################################################################################################
+// Go right
+Void TrunRight(){
+ 
+} //Void TrunRight
 #######################################################################################################################################
 
 
