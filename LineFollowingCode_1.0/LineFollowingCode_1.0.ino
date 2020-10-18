@@ -42,13 +42,26 @@ void setup() {
  pinMode(Motor2CCW, OUTPUT);
    
 
-}
+} //End Setup
+
 
 void loop() {
-  //Lees de drukknop
+  // Read the sensors and button een overzichterlijke weergave door meerdere voids te gebruiken
+  ReadSensorAndButton();
+  // Doorloop het programma
+  if Active{
+    // Hier de werkelijke code
+  } // End if active
+}//End Void loop
+
+
+#######################################################################################################################################
+// Read the sensors and button 
+Void ReadSensorsAndButton(){
+   //Lees de drukknop
   DrukknopValue = digitalRead(Drukknop);
   
-   // Lees de analoge ingangen en schrijf de data weg
+  // Lees de analoge ingangen en schrijf de data weg
   Sensor1Value = analogRead(Sensor1);
   // Geef even tijd om te lezen en weg te schrijven
   Delay(5);
@@ -64,13 +77,8 @@ void loop() {
   // Drukknop gedrukt start programma
   if (DrukknopValue == HIGH){
     Active =! Active;    
-  } 
-  
-  // Doorloop het programma
-  if Active{
-    // Hier de werkelijke code
-  }
-
-}
+  } // End if DrukknopValue
+} //End Void ReadSensorAndButton
+#######################################################################################################################################
 
 
