@@ -1,7 +1,7 @@
 /*Line Following code 1.0 */
 
 //Analoge
-const int Drukknop = A0;
+/*const int Drukknop = A0;
 const int Sensor1 = A1;
 const int Sensor2 = A2;
 const int Sensor3 = A3;
