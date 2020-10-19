@@ -1,4 +1,5 @@
-/*Line Following code 1.0 */
+/*Line Following code 1.1 */
+// Last edit 19/10/2020
 
 //Analoge
 const int Drukknop = A0;
@@ -10,10 +11,10 @@ const int Sensor5 = A5;
 
 //Digitale
 const int Enable = 13;
-const int Motor1CW = 5; // Draaizin motoren nog niet zeker
-const int Motor1CCW = 10;
-const int Motor2CW = 6;
-const int Motor2CCW = 11;
+const int Motor1Forward = 5; // Draaizin motoren nog niet zeker
+const int Motor1Backward = 10;
+const int Motor2Forward = 6;
+const int Motor2Backward = 11;
 
 //Drukknop variabele
 int DrukknopValue = 0;
@@ -36,10 +37,10 @@ void setup() {
 
   // Digitale pinnen als output
   pinMode(Enable, OUTPUT);
-  pinMode(Motor1CW, OUTPUT);
-  pinMode(Motor1CCW, OUTPUT);
-  pinMode(Motor2CW, OUTPUT);
-  pinMode(Motor2CCW, OUTPUT);
+  pinMode(Motor1Forward, OUTPUT);
+  pinMode(Motor1Backward, OUTPUT);
+  pinMode(Motor2Forward, OUTPUT);
+  pinMode(Motor2Backward, OUTPUT);
 
 
 } //End Setup
@@ -127,59 +128,58 @@ void ReadSensorAndButton() {
 // Go forward
 void Forward() {
   digitalWrite(Enable, HIGH);
-  analogWrite(Motor1CW, 200);
-  analogWrite(Motor1CCW, 0);
-  analogWrite(Motor2CW, 200);
-  analogWrite(Motor2CCW, 0);
+  analogWrite(Motor1Forward, 200);
+  analogWrite(Motor1Backward, 0);
+  analogWrite(Motor2Forward, 200);
+  analogWrite(Motor2Backward, 0);
   Serial.println("Forward");
 }//Void Forward
 //#######################################################################################################################################
 //Go left
 void TrunLeft() {
   digitalWrite(Enable, HIGH);
-  analogWrite(Motor1CW, 150);
-  analogWrite(Motor1CCW, 0);
-  analogWrite(Motor2CW, 200);
-  analogWrite(Motor2CCW, 0);
+  analogWrite(Motor1Forward, 150);
+  analogWrite(Motor1Backward, 0);
+  analogWrite(Motor2Forward, 200);
+  analogWrite(Motor2Backward, 0);
   Serial.println("Left");
 }//Void TrunLeft
 //#######################################################################################################################################
 // Go right
 void TrunRight() {
   /*digitalWrite(Enable, HIGH);
-    analogWrite(Motor1CW, 200);
-    analogWrite(Motor1CCW, 0);
-    analogWrite(Motor2CW, 150);
-    analogWrite(Motor2CCW, 0);*/
+    analogWrite(Motor1Forward, 200);
+    analogWrite(Motor1Backward, 0);
+    analogWrite(Motor2Forward, 150);
+    analogWrite(Motor2Backward, 0);*/
   Serial.println("Right");
 } //Void TrunRight
 //#######################################################################################################################################
 
 void SharpTrunLeft() {
   /* digitalWrite(Enable, HIGH);
-    analogWrite(Motor1CW, 0);
-    analogWrite(Motor1CCW, 0);
-    analogWrite(Motor2CW, 200);
-    analogWrite(Motor2CCW, 0);*/
+    analogWrite(Motor1Forward, 0);
+    analogWrite(Motor1Backward, 0);
+    analogWrite(Motor2Forward, 200);
+    analogWrite(Motor2Backward, 0);*/
   Serial.println("SharpTurnLeft");
 }
 
 void SharpTrunRight() {
   /*digitalWrite(Enable, HIGH);
-    analogWrite(Motor1CW, 200);
-    analogWrite(Motor1CCW, 0);
-    analogWrite(Motor2CW, 0);
-    analogWrite(Motor2CCW, 0);*/
+    analogWrite(Motor1Forward, 200);
+    analogWrite(Motor1Backward, 0);
+    analogWrite(Motor2Forward, 0);
+    analogWrite(Motor2Backward, 0);*/
   Serial.println("SharpTurnRight");
 }
 
 //#######################################################################################################################################
 void Stop() {
   digitalWrite(Enable, LOW);
-  analogWrite(Motor1CW, 0);
-  analogWrite(Motor1CCW, 0);
-  analogWrite(Motor2CW, 0);
-  analogWrite(Motor2CCW, 0);
+  analogWrite(Motor1Forward, 0);
+  analogWrite(Motor1Backward, 0);
+  analogWrite(Motor2Forward, 0);
+  analogWrite(Motor2Backward, 0);
   Serial.println("Stop");
 }
-
