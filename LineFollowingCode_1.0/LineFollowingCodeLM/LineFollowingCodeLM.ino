@@ -64,14 +64,14 @@ void loop() {
 
     if (Sensor1Value < 100 && Sensor2Value < 100 && Sensor3Value < 100 && Sensor4Value > 500 && Sensor5Value > 500) {
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
-      while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500)) {
+      while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || !Active) {
         ReadSensorAndButton();
         SharpTrunLeft();
       }
     }
 
     if (Sensor1Value > 500 && Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value < 100 && Sensor5Value < 100) {
-      while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500)) {
+      while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || !Active) {
         ReadSensorAndButton();
         SharpTrunRight();
       }
