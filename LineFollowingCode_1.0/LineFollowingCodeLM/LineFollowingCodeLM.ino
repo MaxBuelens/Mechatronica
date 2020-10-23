@@ -11,7 +11,7 @@ const int Sensor5 = A5;
 
 //Digitale
 const int Enable = 13;
-const int Motor1Forward = 5; // Draaizin motoren nog niet zeker
+const int Motor1Forward = 5;
 const int Motor1Backward = 10;
 const int Motor2Forward = 6;
 const int Motor2Backward = 11;
@@ -64,14 +64,14 @@ void loop() {
 
     if (Sensor1Value < 100 && Sensor2Value < 100 && Sensor3Value < 100 && Sensor4Value > 500 && Sensor5Value > 500) {
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
-      until ((Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || Active) {
+      while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || !Active) {
         ReadSensorAndButton();
         SharpTrunLeft();
       }
     }
 
     if (Sensor1Value > 500 && Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value < 100 && Sensor5Value < 100) {
-      until ((Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || Active) {
+      while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || !Active) {
         ReadSensorAndButton();
         SharpTrunRight();
       }
@@ -124,7 +124,7 @@ void ReadSensorAndButton() {
   Serial.print("Sensor5:");
   Serial.println(Sensor5Value);
 
-  if (DrukknopValue == LOW) { //Drukknop leest '0' bij indrukken
+  if (DrukknopValue == LOW) {   //Drukknop leest '0' bij indrukken
     Active = ! Active;
     Serial.println("Push on button ==> robot is active");
     delay(200);
