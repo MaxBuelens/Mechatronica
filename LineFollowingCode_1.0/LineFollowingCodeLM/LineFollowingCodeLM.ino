@@ -1,5 +1,5 @@
 /*Line Following code 1.1 */
-// Last edit 19/10/2020
+// Last edit 23/10/2020
 
 //Analoge
 const int Drukknop = A0;
@@ -23,7 +23,7 @@ bool Active = false;
 //Sensoren variabele
 int Sensor1Value = 0;
 int Sensor2Value = 0;
-int Sensor3Value = 50;
+int Sensor3Value = 0;
 int Sensor4Value = 0;
 int Sensor5Value = 0;
 
@@ -64,14 +64,14 @@ void loop() {
 
     if (Sensor1Value < 100 && Sensor2Value < 100 && Sensor3Value < 100 && Sensor4Value > 500 && Sensor5Value > 500) {
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
-      while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || !Active) {
+      until ((Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || Active) {
         ReadSensorAndButton();
         SharpTrunLeft();
       }
     }
 
     if (Sensor1Value > 500 && Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value < 100 && Sensor5Value < 100) {
-      while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || !Active) {
+      until ((Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || Active) {
         ReadSensorAndButton();
         SharpTrunRight();
       }
@@ -124,7 +124,7 @@ void ReadSensorAndButton() {
   Serial.print("Sensor5:");
   Serial.println(Sensor5Value);
 
-  if (DrukknopValue == LOW) {
+  if (DrukknopValue == LOW) { //Drukknop leest '0' bij indrukken
     Active = ! Active;
     Serial.println("Push on button ==> robot is active");
     delay(200);
