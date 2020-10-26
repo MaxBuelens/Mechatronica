@@ -87,7 +87,7 @@ void loop() {
 
   else {
     digitalWrite(Enable, LOW);
-  }
+  } // End else
 
 }//End Void loop
 
