@@ -72,14 +72,14 @@ void loop() {
     //zwart / zwart / Zwart / wit / wit
     if (Sensor1Value == LOW && Sensor2Value == LOW && Sensor3Value == LOW && Sensor4Value == HIGH && Sensor5Value == HIGH) {
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
-      while (!(Sensor2Value == HIGH && Sensor3Value == LOW && Sensor4Value == HIGH) || Active) {
+      while (!(Sensor2Value == HIGH && Sensor3Value == LOW && Sensor4Value == HIGH) && Active) {
         ReadSensorAndButton();
         SharpTrunLeft();
       }
     }
     // wit / wit / Zwart / zwart / zwart
     if (Sensor1Value ==  HIGH && Sensor2Value == HIGH && Sensor3Value == LOW && Sensor4Value == LOW && Sensor5Value == LOW) {
-      while (!(Sensor2Value == HIGH && Sensor3Value == LOW && Sensor4Value == HIGH) || Active) {
+      while (!(Sensor2Value == HIGH && Sensor3Value == LOW && Sensor4Value == HIGH) && Active) {
         ReadSensorAndButton();
         SharpTrunRight();
       }
