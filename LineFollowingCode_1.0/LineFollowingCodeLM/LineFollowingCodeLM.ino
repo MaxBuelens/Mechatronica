@@ -24,10 +24,12 @@ bool Active = false;
 //Sensoren variabele
 int Sensor1Value = 0;
 int Sensor2Value = 0;
-int Sensor3Value = 50;
+int Sensor3Value = 0;
 int Sensor4Value = 0;
 int Sensor5Value = 0;
 
+const int Wit = 500;
+const int Zwart = 100;
 
 void setup() {
   // Voor de serial poort te kunnen gebruiken
@@ -52,15 +54,15 @@ void loop() {
 
   if (Active) {
     //Wit / Wit / Zwart / Wit / Wit
-    if (Sensor1Value > 500 && Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500 && Sensor5Value > 500) {
+    if (Sensor1Value > Wit && Sensor2Value > Wit && Sensor3Value < Zwart && Sensor4Value > Wit && Sensor5Value > Wit) {
       Forward();
     }
     //Wit / zwart / Zwart / Wit / Wit
-    if (Sensor1Value > 500 && Sensor2Value < 100 && Sensor3Value < 100 && Sensor4Value > 500 && Sensor5Value > 500) {
+    if (Sensor1Value > Wit && Sensor2Value < Zwart && Sensor3Value < Wit && Sensor4Value > Wit && Sensor5Value > Wit) {
       TrunLeft();
     }
     //Wit / wit / Zwart / zwart / wit
-    if (Sensor1Value > 500 && Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value < 100 && Sensor5Value > 500) {
+    if (Sensor1Value > Wit && Sensor2Value > Wit && Sensor3Value < Zwart && Sensor4Value < Wit && Sensor5Value > Wit {
       TrunRight();
     }
     //zwart / zwart / Zwart / wit / wit
