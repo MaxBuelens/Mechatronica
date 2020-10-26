@@ -51,18 +51,19 @@ void loop() {
   ReadSensorAndButton();
 
   if (Active) {
+    //Wit / Wit / Zwart / Wit / Wit
     if (Sensor1Value > 500 && Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500 && Sensor5Value > 500) {
       Forward();
     }
-
+    //Wit / zwart / Zwart / Wit / Wit
     if (Sensor1Value > 500 && Sensor2Value < 100 && Sensor3Value < 100 && Sensor4Value > 500 && Sensor5Value > 500) {
       TrunLeft();
     }
-
+    //Wit / wit / Zwart / zwart / wit
     if (Sensor1Value > 500 && Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value < 100 && Sensor5Value > 500) {
       TrunRight();
     }
-
+    //zwart / zwart / Zwart / wit / wit
     if (Sensor1Value < 100 && Sensor2Value < 100 && Sensor3Value < 100 && Sensor4Value > 500 && Sensor5Value > 500) {
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
       //Nog geen test
@@ -71,14 +72,14 @@ void loop() {
         SharpTrunLeft();
       }
     }
-
+    // wit / wit / Zwart / zwart / zwart
     if (Sensor1Value > 500 && Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value < 100 && Sensor5Value < 100) {
       while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || !Active) {
         ReadSensorAndButton();
         SharpTrunRight();
       }
     }
-
+    // zwart / zwart / Zwart / zwart / zwart
     if (Sensor1Value < 100 && Sensor2Value < 100 && Sensor3Value < 100 && Sensor4Value < 100 && Sensor5Value < 100) {
       Stop();
     }
