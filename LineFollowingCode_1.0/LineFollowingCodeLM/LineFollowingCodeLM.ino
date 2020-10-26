@@ -131,7 +131,7 @@ void ReadSensorAndButton() {
     Active = ! Active;
     Serial.println("Push on button ==> robot is active");
     delay(200);
-  }
+  } // If drukknop
 
 } //End Void ReadSensorAndButton
 //#######################################################################################################################################
