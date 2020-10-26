@@ -105,8 +105,8 @@ void ReadSensorAndButton() {
   delay(5);
   Sensor2Value = analogRead(Sensor2);
   delay(5);
-  //Sensor3Value = analogRead(Sensor3);
-  // delay(5);
+  Sensor3Value = analogRead(Sensor3);
+  delay(5);
   Sensor4Value = analogRead(Sensor4);
   delay(5);
   Sensor5Value = analogRead(Sensor5);
