@@ -1,5 +1,5 @@
 /*Line Following code 1.1 */
-// Last edit 19/10/2020
+// Last edit 23/10/2020
 
 //Analoge
 const int Drukknop = A0;
@@ -11,7 +11,7 @@ const int Sensor5 = A5;
 
 //Digitale
 const int Enable = 13;
-const int Motor1Forward = 5; // Draaizin motoren nog niet zeker
+const int Motor1Forward = 5;
 const int Motor1Backward = 10;
 const int Motor2Forward = 6;
 const int Motor2Backward = 11;
@@ -23,7 +23,7 @@ bool Active = false;
 //Sensoren variabele
 int Sensor1Value = 0;
 int Sensor2Value = 0;
-int Sensor3Value = 50;
+int Sensor3Value = 0;
 int Sensor4Value = 0;
 int Sensor5Value = 0;
 
@@ -125,7 +125,7 @@ void ReadSensorAndButton() {
   Serial.print("Sensor5:");
   Serial.println(Sensor5Value);
 
-  if (DrukknopValue == LOW) {
+  if (DrukknopValue == LOW) {   //Drukknop leest '0' bij indrukken
     Active = ! Active;
     Serial.println("Push on button ==> robot is active");
     delay(200);
