@@ -1,4 +1,4 @@
-/*Line Following code 1.1 */
+/*Line Following code 1.2 */
 // Last edit 29/10/2020
 //Analoog genomen zodat sensoren niet individueel moeten aangepast worden met de potentiometer
 
@@ -58,31 +58,31 @@ void loop() {
       Forward();
     }
     //Wit / zwart / Zwart / Wit / Wit
-    if (Sensor1Value > Wit && Sensor2Value < Zwart && Sensor3Value < Wit && Sensor4Value > Wit && Sensor5Value > Wit) {
+    if (Sensor1Value > Wit && Sensor2Value < Zwart && Sensor3Value < Zwart && Sensor4Value > Wit && Sensor5Value > Wit) {
       TrunLeft();
     }
-    //Wit / wit / Zwart / zwart / wit
-    if (Sensor1Value > Wit && Sensor2Value > Wit && Sensor3Value < Zwart && Sensor4Value < Wit && Sensor5Value > Wit {
+    //Wit / Wit / Zwart / zwart / Wit
+    if (Sensor1Value > Wit && Sensor2Value > Wit && Sensor3Value < Zwart && Sensor4Value < Wit && Sensor5Value > Wit) {
       TrunRight();
     }
-    //zwart / zwart / Zwart / wit / wit
-    if (Sensor1Value < zwart && Sensor2Value < wit && Sensor3Value < zwart && Sensor4Value > wit && Sensor5Value > wit) {
+    //zwart / zwart / Zwart / Wit / Wit
+    if (Sensor1Value < Zwart && Sensor2Value < Wit && Sensor3Value < Zwart && Sensor4Value > Wit && Sensor5Value > Wit) {
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
       //Nog een test
-      while (!(Sensor2Value > zwart && Sensor3Value < wit && Sensor4Value > zwart) && Active) {
+      while (!(Sensor2Value > Zwart && Sensor3Value < Wit && Sensor4Value > Zwart) && Active) {
         ReadSensorAndButton();
         SharpTrunLeft();
       }
     }
-    // wit / wit / Zwart / zwart / zwart
-    if (Sensor1Value > wit && Sensor2Value > wit && Sensor3Value < zwart && Sensor4Value < zwart && Sensor5Value < zwart) {
-      while (!(Sensor2Value > wit && Sensor3Value < zwart && Sensor4Value > wit) && Active) {
+    // Wit / Wit / Zwart / zwart / zwart
+    if (Sensor1Value > Wit && Sensor2Value > Wit && Sensor3Value < Zwart && Sensor4Value < Zwart && Sensor5Value < Zwart) {
+      while (!(Sensor2Value > Wit && Sensor3Value < Zwart && Sensor4Value > Wit) && Active) {
         ReadSensorAndButton();
         SharpTrunRight();
       }
     }
     // zwart / zwart / Zwart / zwart / zwart
-    if (Sensor1Value < zwart && Sensor2Value < zwart && Sensor3Value < zwart && Sensor4Value < zwart && Sensor5Value < zwart) {
+    if (Sensor1Value < Zwart && Sensor2Value < Zwart && Sensor3Value < Zwart && Sensor4Value < Zwart && Sensor5Value < Zwart) {
       Stop();
     }
   }//If active
