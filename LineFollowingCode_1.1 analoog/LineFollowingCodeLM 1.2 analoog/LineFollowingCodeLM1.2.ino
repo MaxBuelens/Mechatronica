@@ -1,5 +1,5 @@
 /*Line Following code 1.1 */
-// Last edit 26/10/2020
+// Last edit 29/10/2020
 //Analoog genomen zodat sensoren niet individueel moeten aangepast worden met de potentiometer
 
 //Analoge
@@ -66,23 +66,23 @@ void loop() {
       TrunRight();
     }
     //zwart / zwart / Zwart / wit / wit
-    if (Sensor1Value < 100 && Sensor2Value < 100 && Sensor3Value < 100 && Sensor4Value > 500 && Sensor5Value > 500) {
+    if (Sensor1Value < zwart && Sensor2Value < wit && Sensor3Value < zwart && Sensor4Value > wit && Sensor5Value > wit) {
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
       //Nog een test
-      while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || !Active) {
+      while (!(Sensor2Value > zwart && Sensor3Value < wit && Sensor4Value > zwart) && Active) {
         ReadSensorAndButton();
         SharpTrunLeft();
       }
     }
     // wit / wit / Zwart / zwart / zwart
-    if (Sensor1Value > 500 && Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value < 100 && Sensor5Value < 100) {
-      while (!(Sensor2Value > 500 && Sensor3Value < 100 && Sensor4Value > 500) || !Active) {
+    if (Sensor1Value > wit && Sensor2Value > wit && Sensor3Value < zwart && Sensor4Value < zwart && Sensor5Value < zwart) {
+      while (!(Sensor2Value > wit && Sensor3Value < zwart && Sensor4Value > wit) && Active) {
         ReadSensorAndButton();
         SharpTrunRight();
       }
     }
     // zwart / zwart / Zwart / zwart / zwart
-    if (Sensor1Value < 100 && Sensor2Value < 100 && Sensor3Value < 100 && Sensor4Value < 100 && Sensor5Value < 100) {
+    if (Sensor1Value < zwart && Sensor2Value < zwart && Sensor3Value < zwart && Sensor4Value < zwart && Sensor5Value < zwart) {
       Stop();
     }
   }//If active
@@ -140,9 +140,9 @@ void ReadSensorAndButton() {
 // Go forward
 void Forward() {
   digitalWrite(Enable, HIGH);
-  analogWrite(Motor1Forward, 200);
+  analogWrite(Motor1Forward, 150);
   analogWrite(Motor1Backward, 0);
-  analogWrite(Motor2Forward, 200);
+  analogWrite(Motor2Forward, 150);
   analogWrite(Motor2Backward, 0);
   Serial.println("Forward");
 }//Void Forward
@@ -150,9 +150,9 @@ void Forward() {
 //Go left
 void TrunLeft() {
   digitalWrite(Enable, HIGH);
-  analogWrite(Motor1Forward, 150);
+  analogWrite(Motor1Forward, 0);
   analogWrite(Motor1Backward, 0);
-  analogWrite(Motor2Forward, 200);
+  analogWrite(Motor2Forward, 150);
   analogWrite(Motor2Backward, 0);
   Serial.println("Left");
 }//Void TrunLeft
@@ -160,9 +160,9 @@ void TrunLeft() {
 // Go right
 void TrunRight() {
   /*digitalWrite(Enable, HIGH);
-    analogWrite(Motor1Forward, 200);
+    analogWrite(Motor1Forward, 95);
     analogWrite(Motor1Backward, 0);
-    analogWrite(Motor2Forward, 150);
+    analogWrite(Motor2Forward, 0);
     analogWrite(Motor2Backward, 0);*/
   Serial.println("Right");
 } //Void TrunRight
@@ -172,14 +172,14 @@ void SharpTrunLeft() {
   /* digitalWrite(Enable, HIGH);
     analogWrite(Motor1Forward, 0);
     analogWrite(Motor1Backward, 0);
-    analogWrite(Motor2Forward, 200);
+    analogWrite(Motor2Forward,95);
     analogWrite(Motor2Backward, 0);*/
   Serial.println("SharpTurnLeft");
 }
 
 void SharpTrunRight() {
   /*digitalWrite(Enable, HIGH);
-    analogWrite(Motor1Forward, 200);
+    analogWrite(Motor1Forward, 95);
     analogWrite(Motor1Backward, 0);
     analogWrite(Motor2Forward, 0);
     analogWrite(Motor2Backward, 0);*/
