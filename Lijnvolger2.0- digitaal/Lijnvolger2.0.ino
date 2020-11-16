@@ -84,7 +84,7 @@ void loop() {
         SharpTrunRight();
       }
     }
-
+    //Zwart / zwart / zwart / zwart / zwart
     if (Sensor1Value == LOW && Sensor2Value == LOW && Sensor3Value == LOW && Sensor4Value == LOW && Sensor5Value == LOW) {
       Stop();
     }
