@@ -28,8 +28,8 @@ int SensorRValue = 0;
 int SensorRRValue = 0;
 
 int vNormaal = 80;
-int vDraaien = 105;
-int v90Graden = 80;
+int vDraaien = 110;
+int v90Graden = 70;
 
 bool stop90Graden = HIGH;
 
@@ -56,15 +56,17 @@ void loop() {
     if (( SensorLLValue == LOW && SensorMValue == HIGH && SensorRRValue == HIGH && SensorRValue == HIGH) || ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRRValue == HIGH && SensorRValue == HIGH))   {
       Stop();
       delay(200);
-      while (!(SensorRValue == LOW && SensorRRValue == HIGH && Active)) {
+      while (!(SensorRValue == HIGH && SensorRRValue == LOW )&& Active) {
         
         SharpTurnRight();
         ReadSensorAndButton();
+        Serial.println("Inside");
       }
+     
     }
     
 
-    else if (SensorLLValue == LOW && SensorLValue == LOW && SensorRValue == HIGH && SensorRRValue == LOW) {   //Middelste en rechtse sensor wit, andere zwart
+    else if (SensorLLValue == LOW && SensorLValue == LOW && SensorRValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == LOW && SensorLValue == LOW && SensorRValue == HIGH && SensorRRValue == LOW) {   //Middelste en rechtse sensor wit, andere zwart
       TurnRight();                                                                                                                //Naar rechts
     }
     else if (SensorLLValue == LOW && SensorLValue == HIGH && SensorRValue == LOW && SensorRRValue == LOW) {   //Middelste en linkse sensor wit, andere zwart
@@ -75,13 +77,13 @@ void loop() {
     }
 
 
-    /*if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == HIGH && SensorMValue == LOW && SensorRRValue == LOW)) {                            //Middelste, linkse en uiterste linkse sensor wit, andere zwart
+    else if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == HIGH && SensorMValue == LOW && SensorRRValue == LOW)) {                            //Middelste, linkse en uiterste linkse sensor wit, andere zwart
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
       while (!(SensorLValue == HIGH && SensorLLValue == LOW) && Active) {
         ReadSensorAndButton();
         SharpTurnLeft();                                                                                                          //Scherp naar links
       }
-      }*/
+      }
 
 
 
@@ -169,22 +171,23 @@ void TurnRight() {
 
 //Scherp naar links
 void SharpTurnLeft() {
-  /* digitalWrite(Enable, HIGH);
+   digitalWrite(Enable, HIGH);
     analogWrite(MotorLeftForward, 0); //0
     analogWrite(MotorLeftBackward, 0);
     analogWrite(MotorRightForward, v90Graden); //100
     analogWrite(MotorRightBackward, 0);
-    Serial.println("SharpTurnLeft");*/
+    Serial.println("SharpTurnLeft");
 }//End void SharpTurnLeft
 
 //Scherp naar rechts
 void SharpTurnRight() {
   digitalWrite(Enable, HIGH);
-  analogWrite(MotorLeftForward, v90Graden);//100
+  analogWrite(MotorLeftForward, v90Graden);//100  v90Graden
   analogWrite(MotorLeftBackward, 0);
   analogWrite(MotorRightForward, 0);//0
-  analogWrite(MotorRightBackward, 0);
+  analogWrite(MotorRightBackward, 0 );
   Serial.println("SharpTurnRight");
+
 }//End void SharpTurnRight
 
 //Stop
