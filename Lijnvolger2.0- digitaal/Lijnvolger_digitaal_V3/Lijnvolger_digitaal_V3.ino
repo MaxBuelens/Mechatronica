@@ -27,11 +27,11 @@ int SensorMValue = 0;
 int SensorRValue = 0;
 int SensorRRValue = 0;
 
-int vNormaal = 80;
-int vDraaien = 110;
-int v90Graden = 70;
+int vNormaal = 90;
+int vDraaien = 130;
+int v90Graden = 85;
 
-bool stop90Graden = HIGH;
+
 
 void setup() {
   // Voor de serial poort te kunnen gebruiken
@@ -50,32 +50,32 @@ void setup() {
 
 void loop() {
   ReadSensorAndButton();
+  
 
   if (Active) {
 
-    if (( SensorLLValue == LOW && SensorMValue == HIGH && SensorRRValue == HIGH && SensorRValue == HIGH) || ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRRValue == HIGH && SensorRValue == HIGH))   {
-      Stop();
-      delay(200);
-      while (!(SensorRValue == HIGH && SensorRRValue == LOW )&& Active) {
-        
-        SharpTurnRight();
-        ReadSensorAndButton();
-        Serial.println("Inside");
-      }
-     
-    }
-    
 
-    else if (SensorLLValue == LOW && SensorLValue == LOW && SensorRValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == LOW && SensorLValue == LOW && SensorRValue == HIGH && SensorRRValue == LOW) {   //Middelste en rechtse sensor wit, andere zwart
-      TurnRight();                                                                                                                //Naar rechts
-    }
-    else if (SensorLLValue == LOW && SensorLValue == HIGH && SensorRValue == LOW && SensorRRValue == LOW) {   //Middelste en linkse sensor wit, andere zwart
-      TurnLeft();                                                                                                                 //Naar links
-    }
-    else if (SensorLLValue == LOW && SensorLValue == LOW && SensorMValue == HIGH && SensorRValue == LOW && SensorRRValue == LOW) {  //Middelste sensor wit, andere zwart
+
+    if (SensorLLValue == LOW && SensorLValue == LOW && SensorMValue == HIGH && SensorRValue == LOW && SensorRRValue == LOW) {  //Middelste sensor wit, andere zwart
       Forward();                                                                                                                  //Voorwaarts
     }
 
+    else if (SensorLLValue == LOW && SensorLValue == LOW && SensorRValue == HIGH && SensorRRValue == LOW) {   //Middelste en rechtse sensor wit, andere zwart
+      TurnRight();                                                                                                                //Naar rechts
+    }
+
+    else if (SensorLLValue == LOW && SensorLValue == HIGH && SensorRValue == LOW && SensorRRValue == LOW) {   //Middelste en linkse sensor wit, andere zwart
+      TurnLeft();                                                                                                                 //Naar links
+    }
+
+    else if (( SensorLLValue == LOW && SensorMValue == HIGH && SensorRRValue == HIGH && SensorRValue == HIGH) || ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRRValue == HIGH && SensorRValue == HIGH) || ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRValue == LOW && SensorRRValue == HIGH))   {
+
+      while (!(SensorRValue == HIGH && SensorRRValue == LOW ) && Active) {
+        SharpTurnRight();
+        ReadSensorAndButton();
+      }
+
+    }
 
     else if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == HIGH && SensorMValue == LOW && SensorRRValue == LOW)) {                            //Middelste, linkse en uiterste linkse sensor wit, andere zwart
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
@@ -83,13 +83,10 @@ void loop() {
         ReadSensorAndButton();
         SharpTurnLeft();                                                                                                          //Scherp naar links
       }
-      }
-
-
-
-    if (SensorLLValue == LOW && SensorLValue == LOW && SensorMValue == LOW && SensorRValue == LOW && SensorRRValue == LOW) {  //Alle sensoren zwart, onderbreking in het parcour
+    }
+    else if (SensorLLValue == LOW && SensorLValue == LOW && SensorMValue == LOW && SensorRValue == LOW && SensorRRValue == LOW) {  //Alle sensoren zwart, onderbreking in het parcour
       Stop();
-      Active == false; //Stop
+      Active = false; //Stop
     }
 
   }//End if active
@@ -171,12 +168,12 @@ void TurnRight() {
 
 //Scherp naar links
 void SharpTurnLeft() {
-   digitalWrite(Enable, HIGH);
-    analogWrite(MotorLeftForward, 0); //0
-    analogWrite(MotorLeftBackward, 0);
-    analogWrite(MotorRightForward, v90Graden); //100
-    analogWrite(MotorRightBackward, 0);
-    Serial.println("SharpTurnLeft");
+  digitalWrite(Enable, HIGH);
+  analogWrite(MotorLeftForward, 0); //0
+  analogWrite(MotorLeftBackward, 0);
+  analogWrite(MotorRightForward, v90Graden); //100
+  analogWrite(MotorRightBackward, 0);
+  Serial.println("SharpTurnLeft");
 }//End void SharpTurnLeft
 
 //Scherp naar rechts
