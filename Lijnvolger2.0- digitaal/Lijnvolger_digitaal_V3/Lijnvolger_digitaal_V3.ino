@@ -27,9 +27,9 @@ int SensorMValue = 0;
 int SensorRValue = 0;
 int SensorRRValue = 0;
 
-int vNormaal = 90;
+int vNormaal = 110;
 int vDraaien = 130;
-int v90Graden = 85;
+int v90Graden = 90;
 
 
 
@@ -86,7 +86,7 @@ void loop() {
     }
     else if (SensorLLValue == LOW && SensorLValue == LOW && SensorMValue == LOW && SensorRValue == LOW && SensorRRValue == LOW) {  //Alle sensoren zwart, onderbreking in het parcour
       Stop();
-      Active = false; //Stop
+      //Active = false; //Stop
     }
 
   }//End if active
