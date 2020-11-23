@@ -27,9 +27,9 @@ int SensorMValue = 0;
 int SensorRValue = 0;
 int SensorRRValue = 0;
 
-int vNormaal = 110;
-int vDraaien = 130;
-int v90Graden = 90;
+const int vNormaal = 110;
+const int vDraaien = 130;
+const int v90Graden = 90;
 
 
 
@@ -49,46 +49,41 @@ void setup() {
 } //End void setup
 
 void loop() {
+
   ReadSensorAndButton();
-  
 
   if (Active) {
-
-
-
     if (SensorLLValue == LOW && SensorLValue == LOW && SensorMValue == HIGH && SensorRValue == LOW && SensorRRValue == LOW) {  //Middelste sensor wit, andere zwart
-      Forward();                                                                                                                  //Voorwaarts
+      Forward();//Voorwaarts                                                                                                                //Voorwaarts
     }
 
     else if (SensorLLValue == LOW && SensorLValue == LOW && SensorRValue == HIGH && SensorRRValue == LOW) {   //Middelste en rechtse sensor wit, andere zwart
-      TurnRight();                                                                                                                //Naar rechts
+      TurnRight(); //Naar rechts                                                                                                                
     }
 
     else if (SensorLLValue == LOW && SensorLValue == HIGH && SensorRValue == LOW && SensorRRValue == LOW) {   //Middelste en linkse sensor wit, andere zwart
-      TurnLeft();                                                                                                                 //Naar links
+      TurnLeft(); //Naar links                                                                                                              
     }
 
-    else if (( SensorLLValue == LOW && SensorMValue == HIGH && SensorRRValue == HIGH && SensorRValue == HIGH) || ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRRValue == HIGH && SensorRValue == HIGH) || ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRValue == LOW && SensorRRValue == HIGH))   {
-
+    else if (( SensorLLValue == LOW && SensorMValue == HIGH && SensorRRValue == HIGH && SensorRValue == HIGH) || ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRRValue == HIGH && SensorRValue == HIGH) ||
+             ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRValue == LOW && SensorRRValue == HIGH))   {
       while (!(SensorRValue == HIGH && SensorRRValue == LOW ) && Active) {
         SharpTurnRight();
         ReadSensorAndButton();
       }
-
     }
 
-    else if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == HIGH && SensorMValue == LOW && SensorRRValue == LOW)) {                            //Middelste, linkse en uiterste linkse sensor wit, andere zwart
+    else if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == HIGH && SensorMValue == LOW && SensorRRValue == LOW)) {   //Middelste, linkse en uiterste linkse sensor wit, andere zwart
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
       while (!(SensorLValue == HIGH && SensorLLValue == LOW) && Active) {
         ReadSensorAndButton();
-        SharpTurnLeft();                                                                                                          //Scherp naar links
+        SharpTurnLeft(); //Scherp naar links                                                                                                        
       }
     }
     else if (SensorLLValue == LOW && SensorLValue == LOW && SensorMValue == LOW && SensorRValue == LOW && SensorRRValue == LOW) {  //Alle sensoren zwart, onderbreking in het parcour
       Stop();
       //Active = false; //Stop
     }
-
   }//End if active
   else {
     digitalWrite(Enable, LOW);
