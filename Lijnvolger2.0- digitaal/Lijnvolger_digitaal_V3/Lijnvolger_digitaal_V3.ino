@@ -27,9 +27,9 @@ int SensorMValue = 0;
 int SensorRValue = 0;
 int SensorRRValue = 0;
 
-const int vNormaal = 80;
+const int vNormaal = 70;
 const int vDraaien = 110;
-const int v90Graden = 80;
+const int v90Graden = 75;
 
 
 
@@ -67,7 +67,7 @@ void loop() {
 
     else if (( SensorLLValue == LOW && SensorMValue == HIGH && SensorRRValue == HIGH && SensorRValue == HIGH) ||( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRRValue == HIGH && SensorRValue == HIGH))   {
       Stop();
-      while (!(SensorRValue == HIGH && SensorRRValue == LOW ) && Active) {
+      while (!(SensorRValue == HIGH && SensorRRValue == LOW ) && Active && !(SensorLLValue == HIGH && SensorLValue == HIGH && SensorMValue == HIGH && SensorRValue == HIGH && SensorRRValue == HIGH)) {
         SharpTurnRight();
         ReadSensorAndButton();
       }
@@ -77,7 +77,7 @@ void loop() {
     else if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == HIGH && SensorMValue == LOW && SensorRRValue == LOW)) {   //Middelste, linkse en uiterste linkse sensor wit, andere zwart
       Stop();
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
-      while (!(SensorLValue == HIGH && SensorLLValue == LOW) && Active) {
+      while (!(SensorLValue == HIGH && SensorLLValue == LOW) && Active && !(SensorLLValue == HIGH && SensorLValue == HIGH && SensorMValue == HIGH && SensorRValue == HIGH && SensorRRValue == HIGH)) {
         ReadSensorAndButton();
         SharpTurnLeft(); //Scherp naar links                                                                                                        
       }
