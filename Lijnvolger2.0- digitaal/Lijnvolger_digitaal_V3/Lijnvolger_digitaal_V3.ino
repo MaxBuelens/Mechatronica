@@ -1,5 +1,5 @@
-/*Line Following code 1.1 */
-// Last edit 27/10/2020
+/*Line Following code 3 */
+// Last edit 29/11/2020
 
 //Analoog
 const int Drukknop = A0;
@@ -27,14 +27,15 @@ int SensorMValue = 0;
 int SensorRValue = 0;
 int SensorRRValue = 0;
 
+//Constante voor snelheid
 const int vNormaal = 70;
-const int vDraaien = 110;
-const int v90Graden = 75;
+const int vDraaien = 100;//110
+const int v90Graden = 80;//75
 
 
-
+//Setup code, 1 keer doorlopen
 void setup() {
-  // Voor de serial poort te kunnen gebruiken
+  // Om de serial poort te kunnen gebruiken
   Serial.begin(9600);
 
   // Drukknop als input
@@ -48,149 +49,156 @@ void setup() {
   pinMode(MotorRightBackward, OUTPUT);
 } //End void setup
 
+
+
+//Loop
 void loop() {
 
   ReadSensorAndButton();
 
   if (Active) {
-    if ((SensorLLValue == LOW && SensorLValue == HIGH&& SensorMValue == HIGH && SensorRValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == HIGH && SensorLValue == HIGH && SensorMValue == HIGH && SensorRValue == HIGH && SensorRRValue == HIGH)) {  //Middelste sensor wit, andere zwart
-      Forward();//Voorwaarts                                                                                                                //Voorwaarts
-    }
+    if ((SensorLLValue == LOW && SensorLValue == HIGH && SensorMValue == HIGH && SensorRValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == HIGH && SensorLValue == HIGH && SensorMValue == HIGH && SensorRValue == HIGH && SensorRRValue == HIGH)) { //Middelste sensor wit, andere zwart
+      Forward();//Voorwaarts                                                                                                               
+    }// End If forward
 
     else if (SensorLLValue == LOW && SensorLValue == LOW && SensorRValue == HIGH && SensorRRValue == LOW) {   //Middelste en rechtse sensor wit, andere zwart
-      TurnRight(); //Naar rechts                                                                                                                
-    }
+      TurnRight(); //Naar rechts
+    }//End else if turnright
 
     else if (SensorLLValue == LOW && SensorLValue == HIGH && SensorRValue == LOW && SensorRRValue == LOW) {   //Middelste en linkse sensor wit, andere zwart
-      TurnLeft(); //Naar links                                                                                                              
-    }
+      TurnLeft(); //Naar links
+    }//End Else if TurlLeft
 
-    else if (( SensorLLValue == LOW && SensorMValue == HIGH && SensorRRValue == HIGH && SensorRValue == HIGH) ||( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRRValue == HIGH && SensorRValue == HIGH))   {
-      Stop();
+    else if (( SensorLLValue == LOW && SensorMValue == HIGH && SensorRRValue == HIGH && SensorRValue == HIGH) || ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRRValue == HIGH && SensorRValue == HIGH))   {
+      //Stop();
       while (!(SensorRValue == HIGH && SensorRRValue == LOW ) && Active && !(SensorLLValue == HIGH && SensorLValue == HIGH && SensorMValue == HIGH && SensorRValue == HIGH && SensorRRValue == HIGH)) {
         SharpTurnRight();
         ReadSensorAndButton();
-      }
-      Stop();
-    }
+      }// End While
+      //Stop();
+    }//End else if SharpTurnRight
 
     else if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == HIGH && SensorMValue == LOW && SensorRRValue == LOW)) {   //Middelste, linkse en uiterste linkse sensor wit, andere zwart
-      Stop();
+      //Stop();
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
       while (!(SensorLValue == HIGH && SensorLLValue == LOW) && Active && !(SensorLLValue == HIGH && SensorLValue == HIGH && SensorMValue == HIGH && SensorRValue == HIGH && SensorRRValue == HIGH)) {
         ReadSensorAndButton();
-        SharpTurnLeft(); //Scherp naar links                                                                                                        
-      }
-      Stop();
-    }
+        SharpTurnLeft(); //Scherp naar links
+      }// End While
+      //Stop();
+    }//End Else if SharpTurnRight
+    
     else if (SensorLLValue == LOW && SensorLValue == LOW && SensorMValue == LOW && SensorRValue == LOW && SensorRRValue == LOW) {  //Alle sensoren zwart, onderbreking in het parcour
       Stop();
-      //Active = false; //Stop
-    }
+      Active = false; //Stop
+    }//End else if stop
   }//End if active
+
   else {
     digitalWrite(Enable, LOW);
-  }
-}//End void loop
+    } // end else active
 
-// Read the sensors and button
-void ReadSensorAndButton() {
+  delay(20); // Voor goede programma werking
+  }//End void loop
 
-  //Lees de drukknop
-  DrukknopValue = digitalRead(Drukknop);
+  // Lees sensoren en drukknop
+  void ReadSensorAndButton() {
 
-  // Lees de analoge ingangen en schrijf de data weg
-  SensorLLValue = digitalRead(SensorLL);
-  // Geef even tijd om te lezen en weg te schrijven
-  delay(5);
-  SensorLValue = digitalRead(SensorL);
-  delay(5);
-  SensorMValue = digitalRead(SensorM);
-  delay(5);
-  SensorRValue = digitalRead(SensorR);
-  delay(5);
-  SensorRRValue = digitalRead(SensorRR);
-  delay(5);
+    //Lees de drukknop
+    DrukknopValue = digitalRead(Drukknop);
 
-  Serial.print("SensorLL:");
-  Serial.print(SensorLLValue);
-  Serial.print("\t");
-  Serial.print("SensorL:");
-  Serial.print(SensorLValue);
-  Serial.print("\t");
-  Serial.print("SensorM:");
-  Serial.print(SensorMValue);
-  Serial.print("\t");
-  Serial.print("SensorR:");
-  Serial.print(SensorRValue);
-  Serial.print("\t");
-  Serial.print("SensorRR:");
-  Serial.println(SensorRRValue);
+    // Lees de analoge ingangen en schrijf de data weg
+    SensorLLValue = digitalRead(SensorLL);
+    // Geef even tijd om te lezen en weg te schrijven
+    delay(5);
+    SensorLValue = digitalRead(SensorL);
+    delay(5);
+    SensorMValue = digitalRead(SensorM);
+    delay(5);
+    SensorRValue = digitalRead(SensorR);
+    delay(5);
+    SensorRRValue = digitalRead(SensorRR);
+    delay(5);
 
-  if (DrukknopValue == LOW) {   //Drukknop leest '0' bij indrukken
-    Active = ! Active;
-    Serial.println("Push on button ==> robot is active");
-    delay(200);
-  } // End if
-} //End void ReadSensorAndButton
+    Serial.print("SensorLL:");
+    Serial.print(SensorLLValue);
+    Serial.print("\t");
+    Serial.print("SensorL:");
+    Serial.print(SensorLValue);
+    Serial.print("\t");
+    Serial.print("SensorM:");
+    Serial.print(SensorMValue);
+    Serial.print("\t");
+    Serial.print("SensorR:");
+    Serial.print(SensorRValue);
+    Serial.print("\t");
+    Serial.print("SensorRR:");
+    Serial.println(SensorRRValue);
 
-//Voorwaarts
-void Forward() {
-  digitalWrite(Enable, HIGH);
-  analogWrite(MotorLeftForward, vNormaal); //120
-  analogWrite(MotorLeftBackward, 0);
-  analogWrite(MotorRightForward, vNormaal); //120
-  analogWrite(MotorRightBackward, 0);
-  Serial.println("Forward");
-} //End void Forward
+    if (DrukknopValue == LOW) {   //Drukknop leest '0' bij indrukken
+      Active = ! Active;
+      Serial.println("Push on button ==> robot is active");
+      delay(200); //Vertaging voor goede werking drukknop 
+    } // End if
+  } //End void ReadSensorAndButton
 
-//Naar links
-void TurnLeft() {
-  digitalWrite(Enable, HIGH);
-  analogWrite(MotorLeftForward, vNormaal); //70
-  analogWrite(MotorLeftBackward, 0);
-  analogWrite(MotorRightForward, vDraaien); //120
-  analogWrite(MotorRightBackward, 0);
-  Serial.println("Left");
-}//End void TurnLeft
+  //Voorwaarts
+  void Forward() {
+    digitalWrite(Enable, HIGH);
+    analogWrite(MotorLeftForward, vNormaal); //120
+    analogWrite(MotorLeftBackward, 0);
+    analogWrite(MotorRightForward, vNormaal); //120
+    analogWrite(MotorRightBackward, 0);
+    Serial.println("Forward");
+  } //End void Forward
 
-//Naar rechts
-void TurnRight() {
-  digitalWrite(Enable, HIGH);
-  analogWrite(MotorLeftForward, vDraaien);// 120
-  analogWrite(MotorLeftBackward, 0);
-  analogWrite(MotorRightForward, vNormaal); //70
-  analogWrite(MotorRightBackward, 0);
-  Serial.println("Right");
-} //End void TurnRight
+  //Naar links
+  void TurnLeft() {
+    digitalWrite(Enable, HIGH);
+    analogWrite(MotorLeftForward, vNormaal); //70
+    analogWrite(MotorLeftBackward, 0);
+    analogWrite(MotorRightForward, vDraaien); //120
+    analogWrite(MotorRightBackward, 0);
+    Serial.println("Left");
+  }//End void TurnLeft
 
-//Scherp naar links
-void SharpTurnLeft() {
-  digitalWrite(Enable, HIGH);
-  analogWrite(MotorLeftForward, 0); //0
-  analogWrite(MotorLeftBackward, 0);
-  analogWrite(MotorRightForward, v90Graden); //100
-  analogWrite(MotorRightBackward, 0);
-  Serial.println("SharpTurnLeft");
-}//End void SharpTurnLeft
+  //Naar rechts
+  void TurnRight() {
+    digitalWrite(Enable, HIGH);
+    analogWrite(MotorLeftForward, vDraaien);// 120
+    analogWrite(MotorLeftBackward, 0);
+    analogWrite(MotorRightForward, vNormaal); //70
+    analogWrite(MotorRightBackward, 0);
+    Serial.println("Right");
+  } //End void TurnRight
 
-//Scherp naar rechts
-void SharpTurnRight() {
-  digitalWrite(Enable, HIGH);
-  analogWrite(MotorLeftForward, v90Graden);//100  v90Graden
-  analogWrite(MotorLeftBackward, 0);
-  analogWrite(MotorRightForward, 0);//0
-  analogWrite(MotorRightBackward, 0 );
-  Serial.println("SharpTurnRight");
+  //Scherp naar links
+  void SharpTurnLeft() {
+    digitalWrite(Enable, HIGH);
+    analogWrite(MotorLeftForward, 0); //0
+    analogWrite(MotorLeftBackward, 0);
+    analogWrite(MotorRightForward, v90Graden); //100
+    analogWrite(MotorRightBackward, 0);
+    Serial.println("SharpTurnLeft");
+  }//End void SharpTurnLeft
 
-}//End void SharpTurnRight
+  //Scherp naar rechts
+  void SharpTurnRight() {
+    digitalWrite(Enable, HIGH);
+    analogWrite(MotorLeftForward, v90Graden);//100  v90Graden
+    analogWrite(MotorLeftBackward, 0);
+    analogWrite(MotorRightForward, 0);//0
+    analogWrite(MotorRightBackward, 0 );
+    Serial.println("SharpTurnRight");
 
-//Stop
-void Stop() {
-  digitalWrite(Enable, LOW);
-  analogWrite(MotorLeftForward, 0);
-  analogWrite(MotorLeftBackward, 0);
-  analogWrite(MotorRightForward, 0);
-  analogWrite(MotorRightBackward, 0);
-  Serial.println("Stop");
-}//End void Stop
+  }//End void SharpTurnRight
+
+  //Stop
+  void Stop() {
+    digitalWrite(Enable, LOW);
+    analogWrite(MotorLeftForward, 0);
+    analogWrite(MotorLeftBackward, 0);
+    analogWrite(MotorRightForward, 0);
+    analogWrite(MotorRightBackward, 0);
+    Serial.println("Stop");
+  }//End void Stop
