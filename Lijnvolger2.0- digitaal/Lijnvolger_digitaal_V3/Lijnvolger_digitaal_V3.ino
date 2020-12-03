@@ -28,9 +28,9 @@ int SensorRValue = 0;
 int SensorRRValue = 0;
 
 //Constante voor snelheid
-const int vNormaal = 70;
-const int vDraaien = 100;//110
-const int v90Graden = 80;//75
+const int vNormaal = 80;
+const int vDraaien = 110;//110
+const int v90Graden = 95;//75
 
 
 //Setup code, 1 keer doorlopen
