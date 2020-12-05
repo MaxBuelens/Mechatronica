@@ -69,7 +69,8 @@ void loop() {
       TurnLeft(); //Naar links
     }//End Else if TurlLeft
 
-    else if (( SensorLLValue == LOW && SensorMValue == HIGH && SensorRRValue == HIGH && SensorRValue == HIGH) || ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRRValue == HIGH && SensorRValue == HIGH))   {
+    else if (( SensorLLValue == LOW && SensorMValue == HIGH && SensorRRValue == HIGH && SensorRValue == HIGH) 
+    || ( SensorLLValue == LOW &&  SensorMValue == LOW && SensorRRValue == HIGH && SensorRValue == HIGH))   {
       //Stop();
       while (!(SensorRValue == HIGH && SensorRRValue == LOW ) && Active && !(SensorLLValue == HIGH && SensorLValue == HIGH && SensorMValue == HIGH && SensorRValue == HIGH && SensorRRValue == HIGH)) {
         SharpTurnRight();
@@ -78,7 +79,8 @@ void loop() {
       //Stop();
     }//End else if SharpTurnRight
 
-    else if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) || (SensorLLValue == HIGH && SensorMValue == LOW && SensorRRValue == LOW)) {   //Middelste, linkse en uiterste linkse sensor wit, andere zwart
+    else if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) 
+    || (SensorLLValue == HIGH && SensorMValue == LOW && SensorRRValue == LOW)) {   //Middelste, linkse en uiterste linkse sensor wit, andere zwart
       //Stop();
       // Doe dit tot robot weer op recht op lijn zit anders blijven draaien
       while (!(SensorLValue == HIGH && SensorLLValue == LOW) && Active && !(SensorLLValue == HIGH && SensorLValue == HIGH && SensorMValue == HIGH && SensorRValue == HIGH && SensorRRValue == HIGH)) {
