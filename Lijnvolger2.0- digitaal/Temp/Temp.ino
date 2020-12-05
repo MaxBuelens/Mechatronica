@@ -26,7 +26,7 @@ bool Active = false;
 int SensorLLValue = 0;
 int SensorLValue = 0;
 int SensorMValue = 0;
-int SensorRValue = 0;²²
+int SensorRValue = 0;
 int SensorRRValue = 0;
 
 //Constanten voor snelheid
