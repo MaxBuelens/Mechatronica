@@ -1,4 +1,4 @@
-/*Line Following code 3 */
+/*Line Following code 3*/
 //LOW---->wit
 //HIGH--->zwart
 //Last edit 9/12/2020
