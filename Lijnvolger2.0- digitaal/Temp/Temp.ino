@@ -76,7 +76,7 @@ void loop() {
         vSnelheid(HIGH, v90Graden, 0, "SharpTurnRight"); //Scherp naar rechts
         ReadSensorAndButton();
       }// End While
-     // Stop();
+
     }//End else if SharpTurnRight
 
     else if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) 
@@ -87,7 +87,7 @@ void loop() {
         vSnelheid(HIGH, 0, v90Graden, "SharpTurnLeft"); //Scherp naar links
         ReadSensorAndButton();
       }// End While
-      //Stop();
+
     }//End else if SharpTurnRight
 
     else if (SensorLLValue == LOW && SensorLValue == LOW && SensorMValue == LOW && SensorRValue == LOW && SensorRRValue == LOW) {  //Alle sensoren zwart, onderbreking in het parcour
