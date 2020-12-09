@@ -30,9 +30,9 @@ int SensorRValue = 0;
 int SensorRRValue = 0;
 
 //Constanten voor snelheid
-const int vNormaal = 75;
-const int vDraaien = 100;
-const int v90Graden = 100;
+const int vNormaal = 75; //75
+const int vDraaien = 100; //100
+const int v90Graden = 80; // 100
 
 //Setup code, 1 keer doorlopen
 void setup() {
@@ -76,7 +76,7 @@ void loop() {
         vSnelheid(HIGH, v90Graden, 0, "SharpTurnRight"); //Scherp naar rechts
         ReadSensorAndButton();
       }// End While
-
+     // Stop();
     }//End else if SharpTurnRight
 
     else if ((SensorLLValue == HIGH && SensorLValue == HIGH && SensorRRValue == LOW) 
@@ -87,7 +87,7 @@ void loop() {
         vSnelheid(HIGH, 0, v90Graden, "SharpTurnLeft"); //Scherp naar links
         ReadSensorAndButton();
       }// End While
-
+      //Stop();
     }//End else if SharpTurnRight
 
     else if (SensorLLValue == LOW && SensorLValue == LOW && SensorMValue == LOW && SensorRValue == LOW && SensorRRValue == LOW) {  //Alle sensoren zwart, onderbreking in het parcour
